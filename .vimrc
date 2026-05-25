@@ -1,6 +1,14 @@
 " --- Mapleader ---
 let mapleader = " "            " Set Spacebar as the mapleader shortcut prefix
 
+" --- Vim-Plug ---
+call plug#begin('~/.vim/plugged')
+
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
 " --- General Quality of Life ---
 set nocompatible            " Disable compatibility with old Vi (essential)
 set number                  " Show line numbers
@@ -12,7 +20,7 @@ set hlsearch                " Highlight search results
 set incsearch               " Search as you type
 set ignorecase              " Ignore case when searching...
 set smartcase               " ...unless search contains a capital letter
-nnoremap <leader><space> :nohlsearch<CR>  
+nnoremap <leader><space> :nohlsearch<CR>
 " Tap Spacebar twice to clear highlights!
 
 " --- Indentation & Tabs (Crucial for config files) ---
@@ -98,7 +106,7 @@ highlight StatusLinePos      ctermfg=0 ctermbg=7 guifg=#000000 guibg=#cccccc
 set spelllang=en_gb             " Set spelling language to British English
 set dictionary=/usr/share/dict/words " Use the system dictionary for completion
 set complete+=kspell            " Allow Ctrl+N autocomplete to suggest dictionary words
-nnoremap <leader>s :setlocal spell!<CR> 
+nnoremap <leader>s :setlocal spell!<CR>
 " Space + s to toggle spell check
 
 " --- Clean paragraph formatting shortcuts ---
@@ -110,6 +118,20 @@ inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
+
+" --- Vimwiki Settings ---
+let g:vimwiki_list = [{
+  \ 'path': '~/vimwiki/',
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md',
+  \ }]
+
+" Stop Vimwiki from treating every single markdown file on your system as a wiki file
+let g:vimwiki_global_ext = 0
+" Quick search across all your wiki notes using Space + f
+nnoremap <leader>f :Files ~/vimwiki<CR>
+" Quick full-text search inside all your notes using Space + g (requires 'ripgrep' on your system)
+nnoremap <leader>g :Rg<CR>
 
 " --- Prose & Writing Mode Optimization ---
 augroup ProseWriting
