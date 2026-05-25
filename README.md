@@ -13,3 +13,7 @@ A lightweight, vanilla `~/.vimrc` optimized for configuration editing (YAML/Sysa
 Before dropping this file in, make sure your local backup folders exist:
 
 mkdir -p ~/.vim/{backup,swap,undo}
+mkdir ~/vimwiki
+
+Remember to run 
+:PlugInstall
